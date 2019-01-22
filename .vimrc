@@ -1,4 +1,6 @@
-syntax enable " auto-detect language and colorize keywords appropriately
+execute pathogen#infect()
+autocmd vimenter * NERDTree
+syntax on " auto-detect language and colorize keywords appropriately
 set wrap " wrap lines
 
 set tabstop=4 " number of visual spaces per TAB
