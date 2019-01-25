@@ -1,8 +1,9 @@
 execute pathogen#infect()
 autocmd vimenter * NERDTree
 syntax on " auto-detect language and colorize keywords appropriately
-set wrap " wrap lines
+colorscheme molokai
 
+set wrap " wrap lines
 set tabstop=4 " number of visual spaces per TAB
 set softtabstop=4 " number of spaces in tab when editing
 set expandtab " all this does is convert tabs to spaces (useful for yaml, Python, etc.)
@@ -20,4 +21,5 @@ set foldnestmax=10 " maximum number of nested blocks that can be folded.
 set foldmethod=marker " you can specify a method to indicate folded folds in vim
 nnoremap B ^
 nnoremap E $
+
 
