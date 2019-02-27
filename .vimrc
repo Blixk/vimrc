@@ -30,3 +30,7 @@ augroup python_files "{{{
         " disable autowrapping
         autocmd filetype python setlocal formatoptions-=t
 augroup end " }}}
+
+" yaml made easy
+au! BufNewFile, BufReadPost *.{yaml, yml} set filetype=yaml foldmethod=indent
+autocmd FileType yaml setlocal textwidth=80 ts=2 sts=2 sw=2 expandtab
