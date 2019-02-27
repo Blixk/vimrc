@@ -22,4 +22,11 @@ set foldmethod=marker " you can specify a method to indicate folded folds in vim
 nnoremap B ^
 nnoremap E $
 
-
+augroup python_files "{{{
+        " PEP8 compliance (set 1 tab = 4 chars explicitly, even if set
+        " earlier, as it is important)
+        autocmd filetype python setlocal textwidth=80
+        autocmd fyletype python match ErrorMsg '\%>80v.+'
+        " disable autowrapping
+        autocmd filetype python setlocal formatoptions-=t
+augroup end " }}}
