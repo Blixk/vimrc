@@ -19,8 +19,10 @@ set foldenable " enables folding, which is pretty sweet in vim
 set foldlevelstart=10 " auto-folding starts when we are 10 nested blocks in (bad and/or very complex code)
 set foldnestmax=10 " maximum number of nested blocks that can be folded.
 set foldmethod=marker " you can specify a method to indicate folded folds in vim
+
 nnoremap B ^
 nnoremap E $
+nnoremap w <C-w>
 
 augroup python_files "{{{
         " PEP8 compliance (set 1 tab = 4 chars explicitly, even if set
