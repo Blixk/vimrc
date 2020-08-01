@@ -1,5 +1,5 @@
 execute pathogen#infect()
-autocmd vimenter * NERDTree
+"autocmd vimenter * NERDTree
 syntax on " auto-detect language and colorize keywords appropriately
 colorscheme monokai
 
@@ -19,10 +19,27 @@ set foldenable " enables folding, which is pretty sweet in vim
 set foldlevelstart=10 " auto-folding starts when we are 10 nested blocks in (bad and/or very complex code)
 set foldnestmax=10 " maximum number of nested blocks that can be folded.
 set foldmethod=marker " you can specify a method to indicate folded folds in vim
+set splitbelow
+set backspace=indent,eol,start
+
+" set the status line so that the current branch and filename are shown
+function! GitBranch()
+    return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
+endfunction
+
+function! StatuslineGit()
+    let l:branchname = GitBranch()
+    return strlen(l:branchname) > 0?' '.l:branchname.' ':''
+endfunction
+
+set laststatus=2
+set encoding=utf-8
+set statusline=%#PmenuSel#%{StatuslineGit()}%#LineNr#\ %f
 
 nnoremap B ^
 nnoremap E $
 nnoremap w <C-w>
+
 
 augroup python_files "{{{
         " PEP8 compliance (set 1 tab = 4 chars explicitly, even if set
