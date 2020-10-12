@@ -6,7 +6,6 @@ set wrap " wrap lines
 set tabstop=4 " number of visual spaces per TAB
 set softtabstop=4 " number of spaces in tab when editing
 set expandtab " all this does is convert tabs to spaces (useful for yaml, Python, etc.)
-set backspace=indent,eol,start
 
 set number " shows line numbers
 set showcmd " shows the last command entered in the very bottom right of Vim
@@ -19,10 +18,11 @@ set foldenable " enables folding, which is pretty sweet in vim
 set foldlevelstart=10 " auto-folding starts when we are 10 nested blocks in (bad and/or very complex code)
 set foldnestmax=10 " maximum number of nested blocks that can be folded.
 set foldmethod=marker " you can specify a method to indicate folded folds in vim
+set backspace=indent,eol,start
+set runtimepath^=~/.vim/bundle/ctrlp.vim
 
-nnoremap B ^
-nnoremap E $
-nnoremap w <C-w>
+"nnoremap B ^
+"nnoremap E $
 
 augroup python_files "{{{
         " PEP8 compliance (set 1 tab = 4 chars explicitly, even if set
