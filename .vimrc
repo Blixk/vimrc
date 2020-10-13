@@ -19,10 +19,17 @@ set foldlevelstart=10 " auto-folding starts when we are 10 nested blocks in (bad
 set foldnestmax=10 " maximum number of nested blocks that can be folded.
 set foldmethod=marker " you can specify a method to indicate folded folds in vim
 set backspace=indent,eol,start
-set runtimepath^=~/.vim/bundle/ctrlp.vim
 
-"nnoremap B ^
-"nnoremap E $
+" ctrlp stuff
+set runtimepath^=~/.vim/bundle/ctrlp.vim
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_working_path_mode = 'ra'
+set wildignore+=*/tmp*,/*.so,*.swp,*.zip
+
+
+nnoremap B ^
+nnoremap E $
 
 augroup python_files "{{{
         " PEP8 compliance (set 1 tab = 4 chars explicitly, even if set
@@ -36,3 +43,9 @@ augroup end " }}}
 " yaml made easy
 au! BufNewFile, BufReadPost *.{yaml, yml} set filetype=yaml foldmethod=indent
 autocmd FileType yaml setlocal textwidth=80 ts=2 sts=2 sw=2 expandtab
+
+call plug#begin('~/.vim/plugged')
+Plug 'fatih/vim-go', { 'tag': '*' }
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+
+call plug#end()
