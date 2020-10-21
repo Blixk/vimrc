@@ -20,11 +20,40 @@ set foldnestmax=10 " maximum number of nested blocks that can be folded.
 set foldmethod=marker " you can specify a method to indicate folded folds in vim
 set backspace=indent,eol,start
 
+" build a usable statusbar
+set laststatus=2
+
+function! GitBranch()
+  return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
+endfunction
+
+function! StatuslineGit()
+  let l:branchname = GitBranch()
+  return strlen(l:branchname) > 0?'  '.l:branchname.' ':''
+endfunction
+
+let g:airline_powerline_fonts=1
+set t_Co=256
+set statusline=
+set statusline+=%#PmenuSel#
+set statusline+=%{StatuslineGit()}
+set statusline+=%#LineNr#
+set statusline+=\ %f
+set statusline+=%m\
+set statusline+=%=
+set statusline+=%#CursorColumn#
+set statusline+=\ %y
+set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
+set statusline+=\[%{&fileformat}\]
+set statusline+=\ %p%%
+set statusline+=\ %l:%c
+set statusline+=\ 
+
 " ctrlp stuff
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
-let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_workign_path_mode = 'ra'
 set wildignore+=*/tmp*,/*.so,*.swp,*.zip
 
 
@@ -47,5 +76,7 @@ autocmd FileType yaml setlocal textwidth=80 ts=2 sts=2 sw=2 expandtab
 call plug#begin('~/.vim/plugged')
 Plug 'fatih/vim-go', { 'tag': '*' }
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-
+Plug 'xavierchow/vim-swagger-preview'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 call plug#end()
