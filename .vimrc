@@ -19,7 +19,11 @@ set foldlevelstart=10 " auto-folding starts when we are 10 nested blocks in (bad
 set foldnestmax=10 " maximum number of nested blocks that can be folded.
 set foldmethod=marker " you can specify a method to indicate folded folds in vim
 set backspace=indent,eol,start
-set t_u7=
+set term=xterm-256color
+
+" enable cut and paste to and from the system clipboard
+set clipboard=unnamed,unnamedplus
+
 " build a usable statusbar
 set laststatus=2
 
