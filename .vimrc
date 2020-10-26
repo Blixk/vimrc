@@ -24,6 +24,7 @@ set term=xterm-256color
 " enable cut and paste to and from the system clipboard
 set clipboard=unnamed,unnamedplus
 
+
 " build a usable statusbar
 set laststatus=2
 
@@ -83,4 +84,5 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'xavierchow/vim-swagger-preview'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'derekwyatt/vim-scala'
 call plug#end()
