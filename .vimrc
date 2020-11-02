@@ -1,4 +1,5 @@
 execute pathogen#infect()
+let python_highlight_all=1
 syntax on " auto-detect language and colorize keywords appropriately
 colorscheme monokai
 
@@ -19,11 +20,6 @@ set foldlevelstart=10 " auto-folding starts when we are 10 nested blocks in (bad
 set foldnestmax=10 " maximum number of nested blocks that can be folded.
 set foldmethod=marker " you can specify a method to indicate folded folds in vim
 set backspace=indent,eol,start
-set term=xterm-256color
-
-" enable cut and paste to and from the system clipboard
-set clipboard=unnamed,unnamedplus
-
 
 " build a usable statusbar
 set laststatus=2
@@ -61,6 +57,12 @@ let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_workign_path_mode = 'ra'
 set wildignore+=*/tmp*,/*.so,*.swp,*.zip
 
+" syntastic stuff
+let g:syntastic_always_populate_loc_list=1
+let g:syntastic_auto_loc_list=1
+let g:syntastic_check_on_open=1
+let g:syntastic_check_on_wq=0
+
 
 nnoremap B ^
 nnoremap E $
@@ -68,15 +70,24 @@ nnoremap E $
 augroup python_files "{{{
         " PEP8 compliance (set 1 tab = 4 chars explicitly, even if set
         " earlier, as it is important)
-        autocmd filetype python setlocal textwidth=80
-        autocmd filetype python match ErrorMsg '\%>80v.+'
+        autocmd FileType python setlocal textwidth=80
+        autocmd FileType python match ErrorMsg '\%>80v.+'
         " disable autowrapping
-        autocmd filetype python setlocal formatoptions-=t
+        autocmd FileType python setlocal formatoptions-=t
 augroup end " }}}
+
+au! BufNewFile, BufReadPost *.go set filetype=go
 
 " yaml made easy
 au! BufNewFile, BufReadPost *.{yaml, yml} set filetype=yaml foldmethod=indent
 autocmd FileType yaml setlocal textwidth=80 ts=2 sts=2 sw=2 expandtab
+
+" Jenkinsfiles made less painful
+au! BufNewFile, BufRead Jenkinsfile setf groovy
+
+augroup java_files
+    autocmd FileType java setlocal omnifunc=javacomplete#Complete
+augroup end
 
 call plug#begin('~/.vim/plugged')
 Plug 'fatih/vim-go', { 'tag': '*' }
@@ -84,5 +95,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'xavierchow/vim-swagger-preview'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'ekalinin/Dockerfile.vim'
 Plug 'derekwyatt/vim-scala'
+Plug 'artur-shaik/vim-javacomplete2'
 call plug#end()
