@@ -1,7 +1,8 @@
 execute pathogen#infect()
 let python_highlight_all=1
 syntax on " auto-detect language and colorize keywords appropriately
-colorscheme monokai
+"colorscheme monokai
+colorscheme onedark
 
 set wrap " wrap lines
 set tabstop=4 " number of visual spaces per TAB
@@ -64,6 +65,13 @@ let g:syntastic_check_on_open=1
 let g:syntastic_check_on_wq=0
 
 
+" ale stuff
+let g:ale_lint_on_enter=0
+let g:ale_lint_on_save=1
+let g:ale_sign_error="**"
+let g:ale_sign_warning="*"
+
+
 nnoremap B ^
 nnoremap E $
 
@@ -75,8 +83,6 @@ augroup python_files "{{{
         " disable autowrapping
         autocmd FileType python setlocal formatoptions-=t
 augroup end " }}}
-
-au! BufNewFile, BufReadPost *.go set filetype=go
 
 " yaml made easy
 au! BufNewFile, BufReadPost *.{yaml, yml} set filetype=yaml foldmethod=indent
@@ -98,4 +104,6 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'ekalinin/Dockerfile.vim'
 Plug 'derekwyatt/vim-scala'
 Plug 'artur-shaik/vim-javacomplete2'
+Plug 'sheerun/vim-polyglot'
+Plug 'pearofducks/ansible-vim'
 call plug#end()
