@@ -8,6 +8,7 @@ set wrap " wrap lines
 set tabstop=4 " number of visual spaces per TAB
 set softtabstop=4 " number of spaces in tab when editing
 set expandtab " all this does is convert tabs to spaces (useful for yaml, Python, etc.)
+set hlsearch
 
 set number " shows line numbers
 set showcmd " shows the last command entered in the very bottom right of Vim
