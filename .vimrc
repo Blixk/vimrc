@@ -8,6 +8,7 @@ set wrap " wrap lines
 set tabstop=4 " number of visual spaces per TAB
 set softtabstop=4 " number of spaces in tab when editing
 set expandtab " all this does is convert tabs to spaces (useful for yaml, Python, etc.)
+set shiftwidth=4
 set hlsearch
 noremap y "*y
 
@@ -36,6 +37,14 @@ function! StatuslineGit()
   return strlen(l:branchname) > 0?'  '.l:branchname.' ':''
 endfunction
 
+"Use <c-space to trigger completion.
+if has('nvim')
+  inoremap <silent><expr> <c-space> coc#refresh()
+else
+  inoremap <silent><expr> <c-@> coc#refresh()
+endif
+
+" airline stuff
 let g:airline_powerline_fonts=1
 set t_Co=256
 set statusline=
@@ -98,6 +107,7 @@ augroup java_files
 augroup end
 
 call plug#begin('~/.vim/plugged')
+Plug 'neoclide/coc.nvim', {'branch':'release'}
 Plug 'fatih/vim-go', { 'tag': '*' }
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'xavierchow/vim-swagger-preview'
@@ -109,4 +119,5 @@ Plug 'artur-shaik/vim-javacomplete2'
 Plug 'sheerun/vim-polyglot'
 Plug 'pearofducks/ansible-vim'
 Plug 'vim-scripts/taglist.vim'
+Plug 'tpope/vim-dadbod'
 call plug#end()
